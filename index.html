@@ -1,23 +1,64 @@
 ---
-layout: default
+layout: homepage
 ---
 
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
+<div class="bottom-space center-block">
   <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    {% for my_post in paginator.posts %}
+      <li class="post-block text-center">
+        <p class="post-category">
+          <a href="{{ site.baseurl }}/category.html#{{ my_post.category }}">{{ my_post.category }}</a>
+        </p>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
+        <h3 class="post-title">
+          <a href="{{ my_post.url | prepend: site.baseurl }}" class="inverse-noactive">{{ my_post.title }}</a>
+          <div class="decorline3"></div>
+        </h3>
+
+        <p class="post-date">{{ my_post.date | date: "%B %-d, %Y" }}</p>
+        {% if my_post.background %}
+        <img class="post-bg" src="{{ my_post.background | prepend: site.baseurl }}"></img>
+        {% endif %}
+
+        <p class="post-content">{{ my_post.content| strip_html | strip_newlines | truncate: 500 }}</p>
+
+        <a href="{{ my_post.url | prepend: site.baseurl }}"><button type="button" class="btn btn-more">READ MORE</button></a>
+
+        <div class="decorline">
+          <p class="pull-left">
+            {% if my_post.tags[0] %}
+            <a href="{{ site.baseurl }}/tags"><i class="fa fa-tags tags"></i></a>
+            {% for tag in my_post.tags %}
+            <a href="{{ site.baseurl }}/tags#{{ tag }}" class="tags">{{ tag }}</a>
+            {% endfor %}
+            {% endif %}
+          </p>
+          <p class="pull-right">
+            <a class="comments inverse-noactive" href="{{ my_post.url | prepend: site.baseurl }}#disqus_thread"></a>
+          </p>
+        </div>
       </li>
     {% endfor %}
   </ul>
+  <div class="paginate">
+    <p class="pull-left">
+    {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+    <a href="/">« NEWER POSTS</a>
+    {% else %}
+    <a href="{{ paginator.previous_page_path }}">« NEWER POSTS</a>
+    {% endif %}
+    {% else %}
+    <span>« NEWER POSTS</span>
+    {% endif %}
+    </p>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+    <p class="pull-right">
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}">OLDER POSTS »</a>
+    {% else %}
+    <span>OLDER POSTS »</span>
+    {% endif %}
+    </p>
+  </div>
 </div>

@@ -1,0 +1,45 @@
+
+<div id="tags" class="side-block">
+	<h4 class="side-title">
+		TAGS
+	</h4>
+	<div class="tags-expo-list">
+		{% for tag in site.tags %}
+		<a href="{{ site.baseurl }}/tags#{{ tag[0] | slugify }}" class="tags"><i class="fa fa-tags tags"></i>{{ tag[0] }}</a>
+		{% endfor %}
+	</div>
+</div>
+
+<div id="ads" class="side-block">
+	<h4 class="side-title">
+		BANNER ADS
+	</h4>
+	<div class="text-center">
+		<img src="{{ '/images/ads.jpg' | prepend: site.baseurl }}" alt="ads">
+	</div>
+</div>
+
+<div class="side-block">
+	<h4 class="side-title">
+		ARCHIVE
+	</h4>
+	{% for post in site.posts %}
+	{% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+	{% capture this_month %}{{ post.date | date: "%B" }}{% endcapture %}
+	{% capture prev_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+	{% capture prev_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
+
+	{% if forloop.first %}
+	<ul class="widget-list">
+		<li><a href="{{ site.baseurl }}/archive.html#{{this_year}}_{{this_month}}">{{this_month}} {{this_year}}</a></li>
+	{% endif %}
+
+	{% if forloop.last %}
+	</ul>
+	{% else %}
+		{% if this_year != prev_year or this_month != prev_month %}
+		<li><a href="{{ site.baseurl }}/archive.html#{{prev_year}}_{{prev_month}}">{{prev_month}} {{prev_year}}</a></li>
+		{% endif %}
+	{% endif %}
+	{% endfor %}
+</div>

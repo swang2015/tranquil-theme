@@ -1,0 +1,83 @@
+---
+layout: default
+title: Category
+---
+
+<div>
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs-tranquil text-center" role="tablist">
+		{% for tag in site.categories %}
+		<li role="presentation">
+			<a href="#{{ tag[0] | slugify }}" aria-controls="{{ tag[0] | slugify }}" role="tab" data-toggle="tab" class="inverse-noactive text-capitalize">
+				<span class="category-subtitle">Browsing Category</span>
+				<h2 class="category-title">{{ tag[0] | slugify }}</h2>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content bottom-space">
+		{% for tag in site.categories %}
+		<div role="tabpanel" class="tab-pane" id="{{ tag[0] | slugify }}">
+			<ul class="post-list">
+				{% for my_post in tag[1] %}
+				<li class="post-block text-center">
+					<div class="row">
+						<div class="col-md-8">
+							<h3 class="post-title">
+								<a href="{{ my_post.url | prepend: site.baseurl }}" class="inverse-noactive">{{ my_post.title }}</a>
+								<div class="decorline3"></div>
+							</h3>
+							<p class="post-date">{{ my_post.date | date: "%B %-d, %Y" }}</p>
+							<p class="post-content">{{ my_post.content| strip_html | strip_newlines | truncate: 300 }}</p>
+							<a href="{{ my_post.url | prepend: site.baseurl }}" class="inverse-noactive"><p class="post-more">» Read More</p></a>
+						</div>
+
+						<div class="col-md-4">
+							<img class="post-bg" src="{{ my_post.background | prepend: site.baseurl }}"></img>
+						</div>
+					</div>
+					<div class="decorline">
+						<p class="pull-left">
+							{% if my_post.tags[0] %}
+							<a href="/tags"><i class="fa fa-tags tags"></i></a>
+							{% for tag in my_post.tags %}
+							<a href="/tags#{{ tag }}" class="tags">{{ tag }}</a>
+							{% endfor %}
+							{% endif %}
+						</p>
+						<p class="pull-right">
+							<a class="comments inverse-noactive" href="{{ my_post.url | prepend: site.baseurl }}#disqus_thread"></a>
+						</p>
+					</div>
+				</li>
+				<a href="{{ site.baseurl }}{{ post.url }}">
+					<li><h4 class="post-title">{{ post.title }}</h4></li>
+				</a>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endfor %}
+	</div>
+
+	<script>
+	$(function() {
+		var hash = window.location.hash;
+		if (hash) {
+			$('ul.nav.nav-tabs-tranquil a[href="'+ window.location.hash+ '"]').tab('show');
+		} else {
+			$('ul.nav.nav-tabs-tranquil a:first').tab('show');
+			window.location.hash = $('ul.nav.nav-tabs-tranquil a:first').attr('href');
+		}
+
+		/* $('.nav-tabs a').on('shown.bs.tab', function (e) {
+			window.location.hash = e.target.hash;
+		}) */
+		window.onhashchange = function () {
+			$('ul.nav.nav-tabs-tranquil a[href="'+ window.location.hash+ '"]').tab('show');
+		}
+	});
+	</script>
+
+</div>

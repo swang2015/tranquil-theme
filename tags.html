@@ -1,0 +1,31 @@
+---
+layout: default
+title: Tags
+---
+
+<article class="text-center page-block">
+	<h2 class="post-title">
+		<a href="{{ page.url | prepend: site.baseurl }}" class="inverse-noactive">{{ page.title }}</a>
+	</h2>
+
+	<div class="post-content">
+		<div class="tags-expo-list">
+			{% for tag in site.tags %}
+			<a href="#{{ tag[0] | slugify }}" class="tags tags-lg"><i class="fa fa-tags tags"></i>{{ tag[0] }}</a>
+			{% endfor %}
+		</div>
+		<hr>
+		<div>
+			{% for tag in site.tags %}
+			<h3 id="{{ tag[0] | slugify }}" class="tag-title">{{ tag[0] }}</h3>
+			<ul class="tag-post-list">
+				{% for post in tag[1] %}
+				<a class="post-title" href="{{ post.url | prepend: site.baseurl }}">
+					<li><h4 class="post-title">{{ post.title }}&nbsp;&nbsp;&nbsp;&nbsp;<small class="post-date">{{ post.date | date_to_string }}</small></h4></li>
+				</a>
+				{% endfor %}
+			</ul>
+			{% endfor %}
+		</div>
+	</div>
+</article>

@@ -1,15 +1,42 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="row">
+	<div class="col-md-9">
+		<article itemscope itemtype="http://schema.org/BlogPosting" class="post-block text-center">
+			<p class="post-category"><a href="/category.html#{{ page.category }}">{{ page.category }}</a></p>
+			<h3 class="post-title" itemprop="name headline">
+				<a href="{{ page.url | prepend: site.baseurl }}" class="inverse-noactive">{{ page.title }}</a>
+				<div class="decorline3"></div>
+			</h3>
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-  </header>
+			<p class="post-date">
+				<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>
+			</p>
 
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-  </div>
+			<div class="post-content" itemprop="articleBody">
+				{{ content }}
+			</div>
 
-</article>
+			<div class="decorline">
+				<p class="pull-left">{% if page.tags[0] %}
+				<a href="{{ site.baseurl }}/tags"><i class="fa fa-tags tags"></i></a>
+				{% for tag in page.tags %}
+				<a href="{{ site.baseurl }}/tags#{{ tag }}" class="tags">{{ tag }}</a>
+				{% endfor %}
+				{% endif %}</p>
+			</div>
+
+			{% if site.disqus_forumname %}
+			{% include comments.html %}
+			{% endif %}
+		</article>
+	</div>
+	<div class="col-md-3">
+		<div class="sidebar center-block">
+			{% include widget_blog.html %}
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,20 @@
+- name: facebook
+  url: http://facebook.com/#
+
+- name: linkedin
+  url: http://linkedin.com/#
+
+- name: twitter
+  url: http://twitter.com/#
+
+- name: github
+  url: http://github.com/#
+
+- name: google-plus
+  url: http://plus.google.com/#
+
+- name: instagram
+  url: http://instagram.com/#
+
+- name: youtube-play
+  url: http://youtube.com/#
