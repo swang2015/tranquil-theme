@@ -29,7 +29,7 @@
 - add `feature` into tags if you want to show post at homepage slider
 - go to `images/` and place sidebar portrait pic and ads pic
 - if [MathJax](https://www.mathjax.org/) is enabled, use `\[...\]` for displayed mathematics and `\(...\)` for in-line mathematics
-- ADVANCED: if you want to further customize your site, check out [Jekyll](https://jekyllrb.com/docs/home/) to understand how it works, also check out [html/css/javascript tutorials](http://www.w3schools.com/) and [liquid language](http://shopify.github.io/liquid/) to learn code.
+- ADVANCED: if you want to further customize your site, look over [Jekyll](https://jekyllrb.com/docs/home/) to understand how it works, also check [html/css/javascript tutorials](http://www.w3schools.com/) and [liquid language](http://shopify.github.io/liquid/) to learn code.
 
 ### site configurations
 
@@ -37,7 +37,7 @@
 | --- | --- |
 | baseurl | the subpath of the site |
 | paginate | posts per pagination |
-| disqus_forumname | create a site on disqus and put the forum name here |
+| disqus_forumname | create a site on [disqus](https://disqus.com/) and put the forum name here |
 | aboutme | a description about self |
 | ads | ads banner image path |
 
@@ -46,6 +46,6 @@
 | Variable | Description |
 | --- | --- |
 | background | post's feature picture |
-| category | put ONE category in each post |
+| category | put ONE category for each post |
 | tags | a list of tags |
 | math | set `true` or `false` to enable MathJax mathematics |

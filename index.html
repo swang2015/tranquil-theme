@@ -28,9 +28,9 @@ layout: homepage
           <p class="pull-left">
             {% if my_post.tags[0] %}
             <a href="{{ site.baseurl }}/tags"><i class="fa fa-tags tags"></i></a>
-            {% for tag in my_post.tags %}
+            {% for tag in my_post.tags %}{% if tag != "feature" %}
             <a href="{{ site.baseurl }}/tags#{{ tag }}" class="tags">{{ tag }}</a>
-            {% endfor %}
+            {% endif %}{% endfor %}
             {% endif %}
           </p>
           <p class="pull-right">
@@ -44,20 +44,20 @@ layout: homepage
     <p class="pull-left">
     {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-    <a href="/">« NEWER POSTS</a>
+    <a href="/">&laquo; NEWER POSTS</a>
     {% else %}
-    <a href="{{ paginator.previous_page_path }}">« NEWER POSTS</a>
+    <a href="{{ paginator.previous_page_path }}">&laquo; NEWER POSTS</a>
     {% endif %}
     {% else %}
-    <span>« NEWER POSTS</span>
+    <span>&laquo; NEWER POSTS</span>
     {% endif %}
     </p>
 
     <p class="pull-right">
     {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}">OLDER POSTS »</a>
+    <a href="{{ paginator.next_page_path }}">OLDER POSTS &raquo;</a>
     {% else %}
-    <span>OLDER POSTS »</span>
+    <span>OLDER POSTS &raquo;</span>
     {% endif %}
     </p>
   </div>

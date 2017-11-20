@@ -10,13 +10,13 @@ title: Tags
 
 	<div class="post-content">
 		<div class="tags-expo-list">
-			{% for tag in site.tags %}
+			{% for tag in site.tags %}{% if tag[0] != "feature" %}
 			<a href="#{{ tag[0] | slugify }}" class="tags tags-lg"><i class="fa fa-tags tags"></i>{{ tag[0] }}</a>
-			{% endfor %}
+			{% endif %}{% endfor %}
 		</div>
 		<hr>
 		<div>
-			{% for tag in site.tags %}
+			{% for tag in site.tags %}{% if tag[0] != "feature" %}
 			<h3 id="{{ tag[0] | slugify }}" class="tag-title">{{ tag[0] }}</h3>
 			<ul class="tag-post-list">
 				{% for post in tag[1] %}
@@ -25,7 +25,7 @@ title: Tags
 				</a>
 				{% endfor %}
 			</ul>
-			{% endfor %}
+			{% endif %}{% endfor %}
 		</div>
 	</div>
 </article>

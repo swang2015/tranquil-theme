@@ -31,7 +31,7 @@ title: Category
 							</h3>
 							<p class="post-date">{{ my_post.date | date: "%B %-d, %Y" }}</p>
 							<p class="post-content">{{ my_post.content| strip_html | strip_newlines | truncate: 300 }}</p>
-							<a href="{{ my_post.url | prepend: site.baseurl }}" class="inverse-noactive"><p class="post-more">» Read More</p></a>
+							<a href="{{ my_post.url | prepend: site.baseurl }}" class="inverse-noactive"><p class="post-more">&raquo; Read More</p></a>
 						</div>
 
 						<div class="col-md-4">
@@ -42,9 +42,9 @@ title: Category
 						<p class="pull-left">
 							{% if my_post.tags[0] %}
 							<a href="/tags"><i class="fa fa-tags tags"></i></a>
-							{% for tag in my_post.tags %}
+							{% for tag in my_post.tags %}{% if tag != "feature" %}
 							<a href="/tags#{{ tag }}" class="tags">{{ tag }}</a>
-							{% endfor %}
+							{% endif %}{% endfor %}
 							{% endif %}
 						</p>
 						<p class="pull-right">

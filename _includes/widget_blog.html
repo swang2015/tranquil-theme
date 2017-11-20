@@ -4,9 +4,9 @@
 		TAGS
 	</h4>
 	<div class="tags-expo-list">
-		{% for tag in site.tags %}
+		{% for tag in site.tags %}{% if tag[0] != "feature" %}
 		<a href="{{ site.baseurl }}/tags#{{ tag[0] | slugify }}" class="tags"><i class="fa fa-tags tags"></i>{{ tag[0] }}</a>
-		{% endfor %}
+		{% endif %}{% endfor %}
 	</div>
 </div>
 
